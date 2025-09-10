@@ -11,35 +11,50 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
+import { BookType, Calendar, ChartNoAxesColumn, GalleryThumbnails, Gauge, Home, ImageIcon, Inbox, Lightbulb, Search, Settings, User2 } from "lucide-react"
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 
 const items = [
     {
         title: "Home",
-        url: "#",
+        url: "/dashboard",
         icon: Home,
     },
     {
-        title: "Inbox",
-        url: "#",
-        icon: Inbox,
+        title: "Thumbnail Generator",
+        url: "/ai-thumbnail-generator",
+        icon: ImageIcon,
     },
     {
-        title: "Calendar",
-        url: "#",
-        icon: Calendar,
+        title: "Thumbnail Search",
+        url: "/thumbnail-search",
+        icon: GalleryThumbnails,
     },
     {
-        title: "Search",
-        url: "#",
-        icon: Search,
+        title: "Keywords",
+        url: "/trending-keywords",
+        icon: BookType,
     },
     {
-        title: "Settings",
-        url: "#",
+        title: "Outlier",
+        url: "/outlier",
+        icon: Gauge,
+    },
+    {
+        title: "AI Content Generator",
+        url: "/ai-content-generator",
+        icon: Lightbulb,
+    },
+    {
+        title: "Billing",
+        url: "/billing",
         icon: Settings,
+    },
+    {
+        title: "Profile",
+        url: "/profile",
+        icon: User2,
     },
 ]
 
@@ -47,23 +62,38 @@ export function AppSidebar() {
     const path = usePathname();
     return (
         <Sidebar>
-            <SidebarHeader>
-                <div className='p-4'>
-                    <Image src={'./logo.svg'} alt='logo' width={100} height={100}
-                        className='w-full h-full' />
-                    <h2 className='text-sm text-gray-400 text-center'>Build Awesome</h2>
+            <SidebarHeader className="p-0 m-0">
+                <div className="w-full">
+                    <Image
+                        src="/f2.png"
+                        alt="logo"
+                        width={192}
+                        height={192}
+                        className="w-full h-auto object-contain block dark:hidden"
+                    />
+
+                    <Image
+                        src="/darkmodelogo.png"
+                        alt="logo"
+                        width={192}
+                        height={192}
+                        className="w-full h-auto object-contain hidden dark:block"
+                    />
+                    <h2 className="text-sm text-gray-400 text-center mt-1">Build Awesome</h2>
                 </div>
             </SidebarHeader>
             <SidebarContent>
                 <SidebarGroup>
 
                     <SidebarGroupContent>
-                        <SidebarMenu className='mt-5'>
+                        <SidebarMenu className='mt-1'>
                             {items.map((item, index) => (
                                 // <SidebarMenuItem key={item.title} className='p-2'>
                                 //     <SidebarMenuButton asChild className=''>
-                                <a href={item.url} key={index} className={`p-2 text-lg flex gap-2 items-center
-                                 hover:bg-gray-100 rounded-lg ${path.includes(item.url) && 'bg-gray-200ß'}`}>
+                                <a href={item.url} key={index} className={`p-2 text-lg flex gap-2 items-center rounded-lg transition-colors
+    hover:bg-gray-100 dark:hover:bg-gray-700
+    ${path.includes(item.url) ? "bg-gray-200 dark:bg-gray-800" : ""}
+  `}>
                                     <item.icon className='h-5 w-5' />
                                     <span>{item.title}</span>
                                 </a>
