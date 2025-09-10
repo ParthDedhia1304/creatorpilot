@@ -24,10 +24,12 @@ type subcontent={
   }],
 }
 
+
 function AiContentGenerator() {
   const [userInput,setUserInput]=useState<string>();
   const [loading,setLoading]=useState(false);
   const [content,setContent]=useState<Content>();
+
 
   const onGenerate=async ()=>{
     try{
@@ -92,3 +94,4 @@ function AiContentGenerator() {
 }
 
 export default AiContentGenerator
+
